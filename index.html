@@ -45,11 +45,28 @@
         pointer-events: none;     
         z-index: 3;   
       }
+      .Deathly_Hallows_Sign {
+          padding: 10px;
+      }
+      .showMagic {
+        background-color: #e7e7e7; 
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 16px;
+        margin: 4px 2px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) 
+      }
     </style>
   </head>
   <body>
     <div class = 'overlay'>
- 
+      <button class="showMagic">Сlick to see magic </button>
     </div>
     <main>
       <article>
@@ -60,6 +77,10 @@
                 <div class="avatar-wrapper">
                   <img class="avatar" src="./assets/avatar.gif" width="40%" height="40%">
                 </div>
+                <div class="Deathly_Hallows_Sign">
+                  <img src="./assets/Deathly_Hallows_Sign.svg" width="100%" height="100%">
+                </div>
+              </div>
               </div>
               <div class="thirteen wide column">
                 <div class="stackable grid">
