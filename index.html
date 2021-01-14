@@ -344,5 +344,106 @@
         </div>
       </article>
     </main>
+    <script>
+      let firstRun = true;
+      let audioTheme = new Audio('./assets/harryPotterTheme.mp3');
+      //audioTheme.setAttribute("loop", "loop");
+      let overlay = document.querySelector('.overlay');
+      
+      document.addEventListener('click', function(e) {
+        let overlayEnable = overlay.style.backgroundImage;
+  
+        if (e.srcElement.classList.contains('spell')) {
+          e.srcElement.childNodes[1].play();
+        }
+  
+        if (e.srcElement.id == 'nox') {
+          window.removeEventListener('mousemove', lumos);
+          window.removeEventListener('mousemove', lumosMaxima);
+          window.removeEventListener('scroll', scrollLumos);
+          window.removeEventListener('scroll', scrollMaxima);
+          
+          overlay.style.backgroundImage = 'none';
+        }
+  
+        if (e.srcElement.id == 'lumos' && overlayEnable !== 'none') {
+          overlay.style.backgroundImage = `radial-gradient(circle closest-side at ${e.pageX}px ${e.pageY}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+          window.removeEventListener('mousemove', lumosMaxima);
+          window.removeEventListener('scroll', scrollMaxima);
+          window.addEventListener('mousemove', lumos);
+          window.addEventListener('scroll', scrollLumos)
+        }
+        
+        if (e.srcElement.id == 'lumosMaxima' && overlayEnable !== 'none') {
+          window.removeEventListener('mousemove', lumos);
+          window.removeEventListener('scroll', scrollLumos);
+          window.addEventListener('mousemove', lumosMaxima );
+          document.addEventListener('scroll', scrollMaxima);
+          overlay.style.backgroundImage = `radial-gradient(circle at ${e.pageX}px ${e.pageY}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+        }
+        
+        if (firstRun) {
+          audioTheme.play();
+          document.getElementById('lumos').childNodes[1].play();
+          window.addEventListener('mousemove', lumosMaxima);
+          document.addEventListener('scroll', scrollMaxima)
+          overlay.style.backgroundImage = `radial-gradient(circle at ${e.pageX}px ${e.pageY}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+          firstRun = false;
+        }
+        document.querySelector('.showMagic').style.visibility = 'hidden';
+      });
+   
+      function lumos(e) {
+        window.lastpageY = e.clientY;
+        window.lastpageX = e.clientX;
+  
+        overlay.style.backgroundImage = `radial-gradient(circle closest-side at ${e.pageX}px ${e.pageY}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+      }
+  
+      function lumosMaxima(e) {
+        window.lastpageY = e.clientY;
+        window.lastpageX = e.clientX;
+  
+        overlay.style.backgroundImage = `radial-gradient(circle at ${e.pageX}px ${e.pageY}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+      }
+      
+      function scrollLumos(e) {
+        let overlayEnable = overlay.style.backgroundImage;
+  
+        if (overlayEnable !== 'none') {
+          overlay.style.backgroundImage = `radial-gradient(circle closest-side at ${window.lastpageX}px ${window.lastpageY + 
+            pageYOffset}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+        }
+      }
+  
+      function scrollMaxima(e) {
+        let overlayEnable = overlay.style.backgroundImage;
+  
+        if (overlayEnable !== 'none') {
+          overlay.style.backgroundImage = `radial-gradient(circle at ${window.lastpageX}px ${window.lastpageY + 
+            pageYOffset}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+        }
+      }
+      
+      document.querySelector('.ligth').addEventListener('click', function() {
+        
+        document.querySelector('.overlay').style.backgroundImage = 'none';
+        document.getElementById('nox').childNodes[1].play();
+        window.removeEventListener('mousemove', lumos);
+        window.removeEventListener('mousemove', lumosMaxima);
+        window.removeEventListener('scroll', scrollLumos);
+        window.removeEventListener('scroll', scrollMaxima);
+      });
+    
+      document.querySelector('.darkness').addEventListener('click', function(e) {
+        overlay.style.backgroundImage = 'radial-gradient(rgba(0,0,0,0.99), rgba(0,0,0,0.99))';
+        document.getElementById('lumos').childNodes[1].play();      
+        overlay.style.backgroundImage = `radial-gradient(circle closest-side at ${e.pageX}px ${e.pageY}px,transparent 5%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.99) 60%)`;
+        window.removeEventListener('mousemove', lumosMaxima);
+        window.removeEventListener('scroll', scrollMaxima);
+        window.addEventListener('mousemove', lumos);
+        window.addEventListener('scroll', scrollLumos)
+      });
+    </script>
   </body>
 </html>
