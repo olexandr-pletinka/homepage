@@ -2,7 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Résumé</title>
+    <title>Harry Potter &mdash; Résumé</title>
+    <link rel="icon" type="image/png" href=".assets/favicon.png" >
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="This is just a résumé." name="subject" />
+    <meta content="My very own personal website." name="description" />
     <link rel="stylesheet" href="https://volodymyrkushnir.com/assets/stylesheets/base.css">
     <style>
       html {
@@ -34,9 +38,19 @@
         cursor: url('./assets/cursor2.png'), auto;
         text-decoration: underline;
       }
+      .overlay {
+        position: absolute;     
+        top: 0; left: 0; right: 0; bottom: 0;     
+        background-image: radial-gradient(rgba(0,0,0,0.99), rgba(0,0,0,0.99));        
+        pointer-events: none;     
+        z-index: 3;   
+      }
     </style>
   </head>
   <body>
+    <div class = 'overlay'>
+ 
+    </div>
     <main>
       <article>
         <div class="page" style="border-color: midnightblue;">
